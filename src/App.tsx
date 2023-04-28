@@ -1,8 +1,16 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
+import { PlayerService } from './services/PlayerService';
 
 function App() {
+
+const getData = () => {
+  PlayerService.getPlayerById(38017699);
+};
+
+console.log(getData());
+
   return (
     <div className="App">
       <header className="App-header">
