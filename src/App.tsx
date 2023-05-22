@@ -1,15 +1,36 @@
-import React from 'react';
+import React , { useEffect, useState} from 'react';
 import logo from './logo.svg';
 import './App.css';
 import { PlayerService } from './services/PlayerService';
+import { Player } from './models/Player';
+import { DataFromApi } from './models/DataFromApi';
 
 function App() {
 
-const getData = () => {
-  PlayerService.getPlayerById(38017699);
-};
+  const [serviceData, setServiceData] = useState<Player | undefined>(undefined);
 
-console.log(getData());
+  useEffect(() => {
+    const getData = async () => {
+      try {
+        const fetchedData = await PlayerService.getPlayerById(213);
+        fetchedData !== undefined ? setServiceData(fetchedData) : console.log("No data")
+      } catch (error) {
+        // Handle error
+      }
+    };
+
+    getData();
+  }, []);
+
+  function add() {
+    //@ts-ignore
+    PlayerService.addPlayerToFavList(serviceData.id);
+  }
+
+  function rmv() {
+    //@ts-ignore
+    PlayerService.rmvPlayerfromFavList(serviceData.id);
+  }
 
   return (
     <div className="App">
@@ -27,6 +48,12 @@ console.log(getData());
           Learn React
         </a>
       </header>
+      <button onClick={add}>
+        Button add
+      </button>
+      <button onClick={rmv}>
+        Button rmv
+      </button>
     </div>
   );
 }
