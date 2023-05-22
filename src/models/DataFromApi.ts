@@ -1,5 +1,5 @@
 export class DataFromApi<Type> {
-    data: Type[];
+    data: Type;
     meta: {
         total_pages: Number;
         current_page: Number;
