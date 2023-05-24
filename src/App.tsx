@@ -6,17 +6,17 @@ import { DataFromApi } from './models/DataFromApi';
 import { StatsService } from './services/StatsService';
 import { StatsQuery } from './models/StatsQuery';
 import { Stat } from './models/Stat';
+import { TeamService } from './services/TeamService';
+import { Team } from './models/Team';
 
 function App() {
 
-  const [serviceData, setServiceData] = useState<DataFromApi<Stat[]> | undefined>(undefined);
+  const [serviceData, setServiceData] = useState<Team | undefined>(undefined);
 
   useEffect(() => {
     const getData = async () => {
-      const query = new StatsQuery(237)
-      query.setPage(2)
       try {
-        const fetchedData = await StatsService.getStats(query);
+        const fetchedData = await TeamService.getTeamById(14);
         fetchedData !== undefined ? setServiceData(fetchedData) : console.log("No data")
       } catch (error) {
         // Handle error
