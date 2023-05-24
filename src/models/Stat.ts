@@ -1,4 +1,4 @@
-export class Stats {
+export class Stat {
     games_played: Number;
     player_id: Number;
     season: Number;

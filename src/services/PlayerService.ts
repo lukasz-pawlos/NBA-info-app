@@ -10,10 +10,16 @@ export class PlayerService {
      * @param search optional
      * @returns DataFromApi<Player[]>
      */
-    static async getPlayers(search: String = ""):Promise<DataFromApi<Player[]>> {
+    static async getPlayers(search: String = "", page: number = 1, per_page: number = 25):Promise<DataFromApi<Player[]>> {
         try {
             const response: AxiosResponse<DataFromApi<Player[]>, any> =
-            await axios.get<DataFromApi<Player[]>>(API_URL + `/?search=${search}`);
+            await axios.get<DataFromApi<Player[]>>(API_URL,{
+                params: {
+                    page: page,
+                    per_page: per_page,
+                    search: search
+                  }
+            });
             return response.data;
         } catch (error) {
             if (axios.isAxiosError(error)) {
