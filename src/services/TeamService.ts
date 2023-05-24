@@ -5,10 +5,10 @@ const API_URL = 'https://www.balldontlie.io/api/v1/teams';
 
 export class TeamService {
 
-    static async getTeamById(teamId: number | string):Promise<Team> {
+    static async getTeamById(teamId: number | string): Promise<Team> {
         try {
             const response: AxiosResponse<Team, any> =
-            await axios.get<Team>(API_URL + `/${teamId}`);
+                await axios.get<Team>(API_URL + `/${teamId}`);
             return response.data;
         } catch (error) {
             if (axios.isAxiosError(error)) {
@@ -19,10 +19,10 @@ export class TeamService {
         throw new Error('An error occurred while fetching the team.');
     }
 
-    static async getTeams():Promise<DataFromApi<Team[]>> {
+    static async getTeams(): Promise<DataFromApi<Team[]>> {
         try {
             const response: AxiosResponse<DataFromApi<Team[]>, any> =
-            await axios.get<DataFromApi<Team[]>>(API_URL);
+                await axios.get<DataFromApi<Team[]>>(API_URL);
             return response.data;
         } catch (error) {
             if (axios.isAxiosError(error)) {
@@ -31,5 +31,44 @@ export class TeamService {
             }
         }
         throw new Error('An error occurred while fetching the team.');
+    }
+
+    static addTeamToFavList(teamId: Number | String | undefined) {
+        const existingArray = localStorage.getItem('favTeams');
+
+        let newArray: any[] = [];
+        if (existingArray) {
+            try {
+                if (existingArray.includes(`${teamId}`)) {
+                    newArray = JSON.parse(existingArray);
+                    if (Array.isArray(newArray)) {
+                        console.error('Existing value is not an array.');
+                        return;
+                    }
+                }
+            } catch (error) {
+                console.error(`Error parsing existing array: ${error}`);
+                return;
+            }
+        }
+        newArray.push(teamId);
+        localStorage.setItem('favTeams', JSON.stringify(newArray));
+    }
+
+    static rmvTeamfromFavList(teamId: Number | String) {
+        const existingArray = localStorage.getItem('favTeams');
+
+        let newArray: any[] = [];
+        if (existingArray) {
+            try {
+                if (existingArray.includes(`${teamId}`))
+                    newArray = JSON.parse(existingArray);
+            } catch (error) {
+                console.error(`Error parsing existing array: ${error}`);
+                return;
+            }
+        }
+        newArray = newArray.filter(id => id !== teamId);
+        localStorage.setItem('favTeams', JSON.stringify(newArray));
     }
 }

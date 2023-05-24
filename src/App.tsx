@@ -29,11 +29,12 @@ function App() {
   function add() {
     //@ts-ignore
     console.log(serviceData)
+    TeamService.addTeamToFavList(serviceData?.id)
   }
 
   function rmv() {
     //@ts-ignore
-    PlayerService.rmvPlayerfromFavList(serviceData.id);
+    TeamService.rmvTeamfromFavList(serviceData.id)
   }
 
   return (
