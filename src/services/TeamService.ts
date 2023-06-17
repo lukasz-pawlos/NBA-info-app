@@ -5,6 +5,11 @@ const API_URL = 'https://www.balldontlie.io/api/v1/teams';
 
 export class TeamService {
 
+    /**
+     * Get selected team by teamId
+     * @param teamId string | number
+     * @returns Team
+     */
     static async getTeamById(teamId: number | string): Promise<Team> {
         try {
             const response: AxiosResponse<Team, any> =
@@ -19,6 +24,10 @@ export class TeamService {
         throw new Error('An error occurred while fetching the team.');
     }
 
+    /**
+     * Get  all teams
+     * @returns DataFromApi<Team[]>
+     */
     static async getTeams(): Promise<DataFromApi<Team[]>> {
         try {
             const response: AxiosResponse<DataFromApi<Team[]>, any> =
@@ -33,6 +42,11 @@ export class TeamService {
         throw new Error('An error occurred while fetching the team.');
     }
 
+    /**
+     * Function to add FavTeam from array from LocalStorage
+     * @param teamId 
+     * 
+     */
     static addTeamToFavList(teamId: Number | String | undefined) {
         const existingArray = localStorage.getItem('favTeams');
 
@@ -55,6 +69,12 @@ export class TeamService {
         localStorage.setItem('favTeams', JSON.stringify(newArray));
     }
 
+
+    /**
+     * Function to remove FavTeam from array from LocalStorage
+     * @param teamId 
+     * 
+     */
     static rmvTeamfromFavList(teamId: Number | String) {
         const existingArray = localStorage.getItem('favTeams');
 

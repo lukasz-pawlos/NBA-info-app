@@ -6,6 +6,12 @@ const API_URL = 'https://www.balldontlie.io/api/v1';
 
 export class StatsService {
 
+
+        /**
+     * Get array of stats
+     * @param queryBody | StatsQuery
+     * @returns DataFromApi<Stat[]>
+     */
     static async getStats(queryBody: StatsQuery):Promise<DataFromApi<Stat[]>> {
         try {
             const response:AxiosResponse<DataFromApi<Stat[]>, any> = 
@@ -22,6 +28,11 @@ export class StatsService {
         throw new Error('An error occurred while fetching the stats.');
     }
 
+    /**
+     * Get stats by gameId
+     * @param gameId string | number
+     * @returns DataFromApi<Stat[]>
+     */
     static async getStatsByGameId(gameId: string | number):Promise<DataFromApi<Stat[]>> {
         try {
             const response:AxiosResponse<DataFromApi<Stat[]>, any> = 
@@ -36,6 +47,12 @@ export class StatsService {
         throw new Error('An error occurred while fetching the stats.');
     }
 
+    /**
+     * Get stats by playerId
+     * @param playerId string | number
+     * @param season string | number
+     * @returns DataFromApi<Stat[]>
+     */
     static async getAvgStatsById(playerId: string | number, season: string | number):Promise<Stat> {
         try {
             const response:AxiosResponse<Stat> = 

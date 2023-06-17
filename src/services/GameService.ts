@@ -6,6 +6,11 @@ const API_URL = 'https://www.balldontlie.io/api/v1/games';
 
 export class GameService {
     
+    /**
+     * Get array of games
+     * @param queryBody GameQuery
+     * @returns DataFromApi<Game[]>
+     */
     static async getGames(queryBody: GameQuery):Promise<DataFromApi<Game[]>> {
         try {
             console.log(queryBody)
@@ -23,6 +28,11 @@ export class GameService {
         throw new Error('An error occurred while fetching the game.');
     }
 
+    /**
+     * Get selected games by gameId
+     * @param gameId string | number
+     * @returns Game
+     */
     static async getGameById(gameId: string | number):Promise<Game> {
         try {
             const response:AxiosResponse<Game> =
