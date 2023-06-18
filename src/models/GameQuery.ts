@@ -3,13 +3,13 @@ export class GameQuery {
     'per_page': number | null;
     'dates': Date | null;
     'seasons[]': number | null;
-    'team_ids[]': number | null;
+    'team_ids[]': number | null | string;
     'start_date': Date | null;
     'end_date': Date | null;
 
 
     constructor(
-        team_ids?: number,
+        team_ids?: number | string,
         dates?: Date,
         start_date?: Date,
         end_date?: Date,
