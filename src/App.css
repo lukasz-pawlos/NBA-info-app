@@ -1,38 +1,137 @@
-.App {
-  text-align: center;
+.logo {
+    background-image: url(https://graphics.axios.com/illustrations/2020-06-19-nba-template/nba-logos.png);
+    background-repeat: no-repeat;
+    display: block;
+    -webkit-transform: scale(.18);
+    transform: scale(0.5);
+    height: 300px;
+    width: 300px;
+    margin: auto;
+    filter: drop-shadow(0.55rem 0.55rem 0.9rem rgba(0, 0, 0, 0.5));
+    transition: 0.5s
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.logo:hover{
+    filter: drop-shadow(1rem 1rem 0.9rem rgba(0, 0, 0, 0.5));
+    transform: scale(0.7);
+}
+/* NBA LOGOS */
+.sprite-76ers {
+    background-position: -5px -5px
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.sprite-bucks {
+    background-position: -315px -5px
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+.sprite-bulls {
+    background-position: -625px -5px
 }
 
-.App-link {
-  color: #61dafb;
+.sprite-cavaliers {
+    background-position: -935px -5px
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.sprite-celtics {
+    background-position: -1245px -5px
+}
+
+.sprite-clippers {
+    background-position: -5px -315px
+}
+
+.sprite-grizzlies {
+    background-position: -315px -315px
+}
+
+.sprite-hawks {
+    background-position: -625px -315px
+}
+
+.sprite-heat {
+    background-position: -935px -315px
+}
+
+.sprite-hornets {
+    background-position: -1245px -315px
+}
+
+.sprite-jazz {
+    background-position: -5px -625px
+}
+
+.sprite-kings {
+    background-position: -315px -625px
+}
+
+.sprite-knicks {
+    background-position: -625px -625px
+}
+
+.sprite-lakers {
+    background-position: -935px -625px
+}
+
+.sprite-magic {
+    background-position: -1245px -625px
+}
+
+.sprite-mavericks {
+    background-position: -5px -935px
+}
+
+.sprite-nets {
+    background-position: -315px -935px
+}
+
+.sprite-nuggets {
+    background-position: -625px -935px
+}
+
+.sprite-pacers {
+    background-position: -935px -935px
+}
+
+.sprite-pelicans {
+    background-position: -1245px -935px
+}
+
+.sprite-pistons {
+    background-position: -5px -1245px
+}
+
+.sprite-raptors {
+    background-position: -315px -1245px
+}
+
+.sprite-rockets {
+    background-position: -625px -1245px
+}
+
+.sprite-spurs {
+    background-position: -935px -1245px
+}
+
+.sprite-suns {
+    background-position: -1245px -1245px
+}
+
+.sprite-thunder {
+    background-position: -1555px -5px
+}
+
+.sprite-timberwolves {
+    background-position: -1555px -315px
+}
+
+.sprite-trail-blazers {
+    background-position: -1555px -625px
+}
+
+.sprite-warriors {
+    background-position: -1555px -935px
+}
+
+.sprite-wizards {
+    background-position: -1555px -1245px
 }
