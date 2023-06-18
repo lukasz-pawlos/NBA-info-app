@@ -53,18 +53,16 @@ export class TeamService {
         let newArray: any[] = [];
         if (existingArray) {
             try {
-                if (existingArray.includes(`${teamId}`)) {
+                if (!existingArray.includes(`${teamId}`)) {
+                    console.log(23432)
                     newArray = JSON.parse(existingArray);
-                    if (Array.isArray(newArray)) {
-                        console.error('Existing value is not an array.');
-                        return;
-                    }
                 }
             } catch (error) {
                 console.error(`Error parsing existing array: ${error}`);
                 return;
             }
         }
+        console.log(newArray)
         newArray.push(teamId);
         localStorage.setItem('favTeams', JSON.stringify(newArray));
     }
@@ -75,7 +73,7 @@ export class TeamService {
      * @param teamId 
      * 
      */
-    static rmvTeamfromFavList(teamId: Number | String) {
+    static rmvTeamfromFavList(teamId: Number | String | undefined) {
         const existingArray = localStorage.getItem('favTeams');
 
         let newArray: any[] = [];
@@ -90,5 +88,14 @@ export class TeamService {
         }
         newArray = newArray.filter(id => id !== teamId);
         localStorage.setItem('favTeams', JSON.stringify(newArray));
+    }
+
+    static isTeamInFavList(teamId: Number | String | undefined) {
+        const existingArray = localStorage.getItem('favTeams');
+        if (existingArray ) {
+            if (!existingArray.includes(`${teamId}`))
+                return true;
+                return false;
+        }
     }
 }

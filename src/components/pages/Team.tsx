@@ -5,15 +5,19 @@ import { GameQuery } from '../../models/GameQuery';
 import { Game } from '../../models/Game';
 import { DataFromApi } from '../../models/DataFromApi';
 import { useEffect, useState } from 'react';
+import { TeamService } from '../../services/TeamService';
 
 const Team = () => {
     const { id } = useParams();
 
     const [stats, setTeams] = useState<DataFromApi<Game[]> | null>(null);
+    const [isInStorage, setisInStorage] = useState<DataFromApi<Game[]> | null>(null);
     const params = new GameQuery(id);
     let newStat: DataFromApi<Game[]>;
 
     useEffect(() => {
+        // @ts-ignore
+        setisInStorage(TeamService.isTeamInFavList(id))
         const fetchData = async () => {
             try {
                 const data = await GameService.getGames(params);
@@ -25,6 +29,12 @@ const Team = () => {
 
         fetchData();
     }, []);
+
+    function changeisInStorage() {
+        !isInStorage ? TeamService.rmvTeamfromFavList(id) : TeamService.addTeamToFavList(id);
+         // @ts-ignore
+        setisInStorage(!isInStorage);
+    }
 
     const fetchData = async () => {
         try {
@@ -57,6 +67,23 @@ const Team = () => {
                     <div className={`logo ${stats?.data[0].visitor_team.abbreviation}`}></div>
                 }
             </div>
+            <div className='text-center'>
+                {isInStorage ?
+                    <button
+                        type="button"
+                        className="btn btn-outline-dark"
+                        onClick={changeisInStorage}>
+                        ADD to fav
+                    </button> :
+                    <button
+                        type="button"
+                        className="btn btn-outline-dark"
+                        onClick={changeisInStorage}>
+                        RM to fav
+                    </button>
+                }
+            </div>
+
             <div>
                 <h1 className='text-center'>{stats?.data[0].home_team.id == id ?
                     stats?.data[0].home_team.full_name :
@@ -82,7 +109,8 @@ const Team = () => {
                                     <Link className={
                                         stat.home_team_score > stat.visitor_team_score ?
                                             "text-success text-decoration-none" : "text-danger text-decoration-none"
-                                    } to={`/teams/${stat.home_team.id}`}>
+                                    } to={`/teams/${stat.home_team.id}`}
+                                    >
                                         {stat.home_team.full_name}
                                     </Link>
                                 </td>
@@ -90,7 +118,7 @@ const Team = () => {
                                     <Link className={
                                         stat.home_team_score < stat.visitor_team_score ?
                                             "text-success text-decoration-none" : "text-danger text-decoration-none"
-                                    } to={`/teams/${stat.home_team.id}`}>
+                                    } to={`/teams/${stat.visitor_team.id}`}>
                                         {stat.visitor_team.full_name}
                                     </Link>
                                 </td>
