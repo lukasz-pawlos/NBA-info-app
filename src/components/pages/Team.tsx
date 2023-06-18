@@ -79,7 +79,7 @@ const Team = () => {
                         type="button"
                         className="btn btn-outline-dark"
                         onClick={changeisInStorage}>
-                        RM to fav
+                        RM
                     </button>
                 }
             </div>
