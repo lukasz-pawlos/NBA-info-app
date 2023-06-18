@@ -13,7 +13,6 @@ export class GameService {
      */
     static async getGames(queryBody: GameQuery):Promise<DataFromApi<Game[]>> {
         try {
-            console.log(queryBody)
             const response:AxiosResponse<DataFromApi<Game[]>, any> =
             await axios.get<DataFromApi<Game[]>>(API_URL,{
                 params:

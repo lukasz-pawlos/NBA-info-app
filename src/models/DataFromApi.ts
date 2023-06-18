@@ -3,7 +3,7 @@ export class DataFromApi<Type> {
     meta: {
         total_pages: Number;
         current_page: Number;
-        next_page: Number;
+        next_page: Number | number;
         per_page: Number;
         total_count: Number;
       }
