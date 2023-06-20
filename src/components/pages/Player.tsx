@@ -16,11 +16,13 @@ const Player = () => {
 
     const [stats, setStats] = useState<Stat | null>(null);
     const [fullStats, setFullStats] = useState<DataFromApi<FullStats[]> | null>(null);
+    const [isInStorage, setisInStorage] = useState<DataFromApi<Stat[]> | null>(null);
     const params = new StatsQuery(id);
     let newStat: DataFromApi<FullStats[]>;
 
     useEffect(() => {
         // @ts-ignore
+        setisInStorage(TeamService.isTeamInFavList(id))
         const fetchDataAVG = async () => {
             try {
                 // @ts-ignore
@@ -38,6 +40,11 @@ const Player = () => {
         fetchData();
     }, []);
 
+    function changeisInStorage() {
+        !isInStorage ? TeamService.rmvTeamfromFavList(id) : TeamService.addTeamToFavList(id);
+        // @ts-ignore
+        setisInStorage(!isInStorage);
+    }
 
     const fetchData = async () => {
         try {
@@ -54,8 +61,7 @@ const Player = () => {
     };
 
     function getMore() {
-        console.log(params)
-        console.log(fullStats?.meta.next_page)
+        ///console.log(stats?.meta.next_page)
         // @ts-ignore
         params.setPage(fullStats?.meta.next_page);
         fetchData();
@@ -101,24 +107,24 @@ const Player = () => {
                     <tbody>
                         <tr>
                             <td >{stats?.min}</td>
-                            <td >{stats?.fgm.toString()}</td>
-                            <td >{stats?.fga.toString()}</td>
-                            <td >{stats?.fg3m.toString()}</td>
-                            <td >{stats?.fg3a.toString()}</td>
-                            <td >{stats?.ftm.toString()}</td>
-                            <td >{stats?.fta.toString()}</td>
-                            <td >{stats?.oreb.toString()}</td>
-                            <td >{stats?.dreb.toString()}</td>
-                            <td >{stats?.reb.toString()}</td>
-                            <td >{stats?.ast.toString()}</td>
-                            <td >{stats?.stl.toString()}</td>
-                            <td >{stats?.blk.toString()}</td>
-                            <td >{stats?.turnover.toString()}</td>
-                            <td >{stats?.pf.toString()}</td>
-                            <td >{stats?.pts.toString()}</td>
-                            <td >{stats?.fg_pct.toString()}</td>
-                            <td >{stats?.fg3_pct.toString()}</td>
-                            <td >{stats?.ft_pct.toString()}</td>
+                            <td >{stats?.fgm !== null ? stats?.fgm.toString() : 0}</td>
+                            <td >{stats?.fga !== null ? stats?.fga.toString(): 0}</td>
+                            <td >{stats?.fg3m !== null ? stats?.fg3m.toString(): 0}</td>
+                            <td >{stats?.fg3a !== null ? stats?.fg3a.toString(): 0}</td>
+                            <td >{stats?.ftm !== null ? stats?.ftm.toString(): 0}</td>
+                            <td >{stats?.fta !== null ? stats?.fta.toString(): 0}</td>
+                            <td >{stats?.oreb !== null ? stats?.oreb.toString(): 0}</td>
+                            <td >{stats?.dreb !== null ? stats?.dreb.toString(): 0}</td>
+                            <td >{stats?.reb !== null ? stats?.reb.toString(): 0}</td>
+                            <td >{stats?.ast !== null ? stats?.ast.toString(): 0}</td>
+                            <td >{stats?.stl !== null ? stats?.stl.toString(): 0}</td>
+                            <td >{stats?.blk !== null ? stats?.blk.toString(): 0}</td>
+                            <td >{stats?.turnover !== null ? stats?.turnover.toString(): 0}</td>
+                            <td >{stats?.pf !== null ? stats?.pf.toString(): 0}</td>
+                            <td >{stats?.pts !== null ? stats?.pts.toString(): 0}</td>
+                            <td >{stats?.fg_pct !== null ? stats?.fg_pct.toString(): 0}</td>
+                            <td >{stats?.fg3_pct !== null ? stats?.fg3_pct.toString(): 0}</td>
+                            <td >{stats?.ft_pct !== null ? stats?.ft_pct.toString(): 0}</td>
                         </tr>
                     </tbody>
                 </table>
@@ -156,26 +162,26 @@ const Player = () => {
                     {fullStats?.data.map((stat) => (
                         <tr>
                             <td>{stat.game.home_team_score.toString()} - {stat.game.visitor_team_score.toString()}</td>
-                            <td>{stat.game.date.toString().slice(0, -14)}</td>
                             <td >{stat?.min}</td>
-                            <td >{stat?.fgm.toString()}</td>
-                            <td >{stat?.fga.toString()}</td>
-                            <td >{stat?.fg3m.toString()}</td>
-                            <td >{stat?.fg3a.toString()}</td>
-                            <td >{stat?.ftm.toString()}</td>
-                            <td >{stat?.fta.toString()}</td>
-                            <td >{stat?.oreb.toString()}</td>
-                            <td >{stat?.dreb.toString()}</td>
-                            <td >{stat?.reb.toString()}</td>
-                            <td >{stat?.ast.toString()}</td>
-                            <td >{stat?.stl.toString()}</td>
-                            <td >{stat?.blk.toString()}</td>
-                            <td >{stat?.turnover.toString()}</td>
-                            <td >{stat?.pf.toString()}</td>
-                            <td >{stat?.pts.toString()}</td>
-                            <td >{stats?.fg_pct.toString()}</td>
-                            <td >{stat?.fg3_pct.toString()}</td>
-                            <td >{stat?.ft_pct.toString()}</td>
+                            <td>{stat?.game.date.toString().slice(0, -14)}</td>
+                            <td >{stat?.fgm !== null ? stat?.fgm.toString() : 0}</td>
+                            <td >{stat?.fga !== null ? stat?.fga.toString(): 0}</td>
+                            <td >{stat?.fg3m !== null ? stat?.fg3m.toString(): 0}</td>
+                            <td >{stat?.fg3a !== null ? stat?.fg3a.toString(): 0}</td>
+                            <td >{stat?.ftm !== null ? stat?.ftm.toString(): 0}</td>
+                            <td >{stat?.fta !== null ? stat?.fta.toString(): 0}</td>
+                            <td >{stat?.oreb !== null ? stat?.oreb.toString(): 0}</td>
+                            <td >{stat?.dreb !== null ? stat?.dreb.toString(): 0}</td>
+                            <td >{stat?.reb !== null ? stat?.reb.toString(): 0}</td>
+                            <td >{stat?.ast !== null ? stat?.ast.toString(): 0}</td>
+                            <td >{stat?.stl !== null ? stat?.stl.toString(): 0}</td>
+                            <td >{stat?.blk !== null ? stat?.blk.toString(): 0}</td>
+                            <td >{stat?.turnover !== null ? stat?.turnover.toString(): 0}</td>
+                            <td >{stat?.pf !== null ? stat?.pf.toString(): 0}</td>
+                            <td >{stat?.pts !== null ? stat?.pts.toString(): 0}</td>
+                            <td >{stat?.fg_pct !== null ? stat?.fg_pct.toString(): 0}</td>
+                            <td >{stat?.fg3_pct !== null ? stat?.fg3_pct.toString(): 0}</td>
+                            <td >{stat?.ft_pct !== null ? stat?.ft_pct.toString(): 0}</td>
                         </tr>))}
                     </tbody>
                 </table>
