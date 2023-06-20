@@ -5,6 +5,7 @@ import Teams from './components/pages/Teams';
 import Team from './components/pages/Team';
 import NavBar from './components/NavBar';
 import Favs from './components/pages/Favs';
+import Players from './components/pages/Players';
 
 function App() {
 
@@ -15,6 +16,7 @@ function App() {
         <Route path="/" element={ <Home/>}> </Route>
         <Route path="/teams" element={ <Teams/>}> </Route>
         <Route path="/favs" element={ <Favs/>}> </Route>
+        <Route path="/players" element={ <Players/>}> </Route>
         <Route path="/teams/:id" element={ <Team/>}> </Route>
       </Routes>
     </div>
