@@ -6,6 +6,7 @@ import Team from './components/pages/Team';
 import NavBar from './components/NavBar';
 import Favs from './components/pages/Favs';
 import Players from './components/pages/Players';
+import Player from './components/pages/Player';
 
 function App() {
 
@@ -18,6 +19,7 @@ function App() {
         <Route path="/favs" element={ <Favs/>}> </Route>
         <Route path="/players" element={ <Players/>}> </Route>
         <Route path="/teams/:id" element={ <Team/>}> </Route>
+        <Route path="/players/:id" element={ <Player/>}> </Route>
       </Routes>
     </div>
   );

@@ -3,13 +3,13 @@ export class StatsQuery {
     'per_page': number | null;
     'dates': Date | null;
     'seasons[]': number | null;
-    'player_ids[]': number | null;
+    'player_ids[]': number | string | null;
     'game_ids[]': number | null;
     'start_date': Date | null;
     'end_date': Date | null;
 
     constructor(
-        player_ids?: number,
+        player_ids?: number | string,
         game_ids?: number,
         dates?: Date,
         start_date?: Date,
