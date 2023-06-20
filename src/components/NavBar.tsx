@@ -16,7 +16,7 @@ const NavBar = () => {
         Home
       </li>
     </Link>
-    <Link className="text-white text-decoration-none" to="/">
+    <Link className="text-white text-decoration-none" to="/players">
       <li className="px-3 d-flex flex-wrap flex-column align-items-center">
         <i className="bi bi-people"></i>
         Players
